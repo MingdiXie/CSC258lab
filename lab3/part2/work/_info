@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u15/c8/00/xieming8/lab3
+vfulladder
+Z1 !s110 1538683518
+!i10b 1
+!s100 ^[?kYeOR:azKbP9n:]WGc3
+I@9N5:biGkaQdi=N9C`6KD2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 d/h/u15/c8/00/xieming8/part2
+Z4 w1538611723
+Z5 8mux.v
+Z6 Fmux.v
+L0 40
+Z7 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z8 !s108 1538683518.000000
+Z9 !s107 mux.v|
+Z10 !s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
+!i113 1
+Z11 o-timescale 1ns/1ns
+Z12 tCvgOpt 0
+vmux
+R1
+!i10b 1
+!s100 KRNP7S`AA[SPI5R3S8Vz42
+IEG8TkfZNSoRkcT:odY6130
+R2
+R3
+R4
+R5
+R6
+L0 6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+vmux7to1
+!s110 1538536301
+!i10b 1
+!s100 89gTB<Oefj<ERUcD1H^PS2
+I:3PWcg74LRbZ7F5h]zOB_0
+R2
+R0
+w1538535318
+R5
+R6
+L0 14
+R7
+r1
+!s85 0
+31
+!s108 1538536301.000000
+R9
+R10
+!i113 1
+R11
+R12

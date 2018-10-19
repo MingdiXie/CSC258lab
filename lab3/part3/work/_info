@@ -1,0 +1,117 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u15/c8/00/xieming8/part3
+vALU
+Z1 !s110 1538688119
+!i10b 1
+!s100 6ej>M1m76014YV];^2iSW1
+I8XH@gW`BeTj00Z;A3zk920
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1538688115
+Z4 8mux.v
+Z5 Fmux.v
+L0 17
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1538688118.000000
+Z8 !s107 mux.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+n@a@l@u
+vfulladder
+R1
+!i10b 1
+!s100 7e3?Hk3>^_5Y<h_M^H4RF2
+IjIjoo6Ej<`oO6VPZ;`aOM1
+R2
+R0
+R3
+R4
+R5
+L0 151
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vmux
+R1
+!i10b 1
+!s100 l?5;zlaOCOJZlgMU@8L;@2
+IhD2I>HgLN0k6HgY1KF9S_1
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vRippleadder
+R1
+!i10b 1
+!s100 [Gc^RnLfg4[@cf3iT[Ph_1
+I5E4BKA<YcNX>k^db`j8523
+R2
+R0
+R3
+R4
+R5
+L0 95
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@rippleadder
+vseven_seg_decoder
+R1
+!i10b 1
+!s100 >i_4>0<iH>?BZY9[zVm?`1
+I:Ej7?8g3SW;YVJ9XE4Ph62
+R2
+R0
+R3
+R4
+R5
+L0 134
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
