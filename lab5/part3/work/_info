@@ -1,0 +1,137 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u15/c8/00/xieming8/part3
+vLUT
+Z1 !s110 1539894821
+!i10b 1
+!s100 [jAocKQM31S:fT:P535lI2
+I_>?ogj6QhgkWXikBCkL0=0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1539894767
+Z4 8mux.v
+Z5 Fmux.v
+L0 96
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1539894821.000000
+Z8 !s107 mux.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+n@l@u@t
+vmorse
+!s110 1539894252
+!i10b 1
+!s100 Bz==KT`NQ:3nRfg39UVK?2
+I_[__ZBLoL;OdiL<2h:lN<1
+R2
+R0
+w1539894161
+R4
+R5
+Z12 L0 14
+R6
+r1
+!s85 0
+31
+!s108 1539894252.000000
+R8
+R9
+!i113 1
+R10
+R11
+vmorsecoder
+R1
+!i10b 1
+!s100 IiQmjV?i2ENnmhc;gClEJ1
+IaE0Nl80hWb]995ONc?GVI2
+R2
+R0
+R3
+R4
+R5
+R12
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vmux
+R1
+!i10b 1
+!s100 FSbL<FOABg]lAX3YKjKNI0
+IEj<I6AjWS[QWWG:YH5dVW0
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vratedivider
+R1
+!i10b 1
+!s100 6oWiH<JgZ]`=hUZ:f`fQb1
+IWR@ZJHS6:7b_51[Ne]MIN0
+R2
+R0
+R3
+R4
+R5
+L0 72
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vshifter
+R1
+!i10b 1
+!s100 69gThfFgYW<DOQBeW;IZ32
+IaL`QAm=DK5YNV?3;GIB;o3
+R2
+R0
+R3
+R4
+R5
+L0 48
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
