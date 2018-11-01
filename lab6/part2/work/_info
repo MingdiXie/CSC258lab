@@ -1,0 +1,115 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u15/c8/00/xieming8/part2
+vcontrol
+Z1 !s110 1541098535
+!i10b 1
+!s100 ]T3DJ8J417X?FWP]B=FXS2
+Ia4KlJgP2BMIbU[DN51S231
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1541097523
+Z4 8poly_function.v
+Z5 Fpoly_function.v
+L0 99
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1541098535.000000
+Z8 !s107 poly_function.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|poly_function.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vdatapath
+R1
+!i10b 1
+!s100 c9LQGQ=0zMFLSm4KU8zG60
+I_fb0`B9oYGJ<16Ua^V;8f0
+R2
+R0
+R3
+R4
+R5
+L0 215
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vfpga_top
+R1
+!i10b 1
+!s100 OPh4ml;o41Z`1aA[g5?012
+Ie];IHEcZ_zba[aRLO=Bh61
+R2
+R0
+R3
+R4
+R5
+L0 9
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vhex_decoder
+R1
+!i10b 1
+!s100 fLE@EI=hPQ19B_1K:?e7m0
+I4@zH@nNkIknWK[f1XZ^0V2
+R2
+R0
+R3
+R4
+R5
+L0 312
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vpart2
+R1
+!i10b 1
+!s100 mJU]fEif:ezB6a8LO=Xzj1
+IzYjA:`1D4l4EJR9ZFcOoz3
+R2
+R0
+R3
+R4
+R5
+L0 45
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

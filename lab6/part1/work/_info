@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u15/c8/00/xieming8/part1
+vmux
+!s110 1540934292
+!i10b 1
+!s100 SJfNL;BhjCm6a7hR;O1eH0
+IkOJILTK6^;kICJLYiD3=B1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1540933876
+Z2 8mux.v
+Z3 Fmux.v
+L0 9
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1540934292.000000
+!s107 mux.v|
+Z5 !s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
+!i113 1
+Z6 o-timescale 1ns/1ns
+Z7 tCvgOpt 0
+vsequence_detector
+!s110 1540933859
+!i10b 1
+!s100 T]RJO[U<=;H`]>SAm<D1S1
+I9HaWJg3Y9be:[<B@CG5c^3
+R1
+R0
+w1540933840
+R2
+R3
+L0 9
+R4
+r1
+!s85 0
+31
+!s108 1540933859.000000
+!s107 mux.v|
+R5
+!i113 1
+R6
+R7
