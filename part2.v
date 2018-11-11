@@ -1,5 +1,70 @@
 // Part 2 skeleton
 
+
+module FSM(start, load, reset, clk, loadx, loady, loadc, enable, writeEn);
+endmodule
+
+
+
+
+
+module datapath(xy,colour,loadx,loady,loadc,enable,clk,reset,out_c,out_x,out_y);
+	input [6:0] xy;
+	input [2:0] colour;
+	input loadx, loady, loadc, enable, clk, reset;
+	
+	output [7:0] x;
+	output [6:0] y;
+	output [2:0] out_c;
+	
+	reg [3:0] counter
+	reg [7:0] out_x;
+	reg [6:0] out_y;
+	always @(posedge clk)
+		begin
+			if(reset == 0) 
+				begin
+				x <= 8'b0;
+				y <= 8'b0;
+				out_c <= 3'b0;
+				end
+			else 
+				begin
+				if (loadx = 1'b1)
+					x <= {1'b0, xy};
+				if (loady = 1'b1)
+					y <= xy;
+				if (loadc = 1'b1)
+					out_c <= colour;
+				end
+		end
+	
+	always @(posedge clk)
+		begin
+			if(reset == 1'b0)
+				begin
+				counter <= 4'b0;
+				end
+			else if(enable == 1'b1) 
+				begin
+				if (counter != 4'b1111)
+					counter <= counter + 1;
+				else begin
+					counter <= 4'b0;
+				end
+				end
+		end
+	assign out_x = counter[1:0] + x;
+	assign out_y = counter[3:2] + y;
+					
+					
+					
+	
+				
+	
+endmodule
+
+
 module part2
 	(
 		CLOCK_50,						//	On Board 50 MHz
