@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u15/c8/00/xieming8/part1
+vram
+Z1 !s110 1541743655
+!i10b 1
+!s100 NgA3FVnmlXD7^_9iS7<f81
+I^Q>Kdc_D31Xh2z8f<dhJ<0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1541743450
+Z4 8ram32x4.v
+Z5 Fram32x4.v
+L0 81
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1541743655.000000
+Z8 !s107 ram32x4.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|ram32x4.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vram32x4
+R1
+!i10b 1
+!s100 NNibd;Xk2b?CNT9NLdVAS3
+IkJnZoSO[ia=ikCY1TC[9m0
+R2
+R0
+R3
+R4
+R5
+L0 40
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vseven_seg_decoder
+R1
+!i10b 1
+!s100 i5hnPDeDT81V7Y:=VL3me0
+I>c__gNfFHTjzTok@o88^V2
+R2
+R0
+R3
+R4
+R5
+L0 148
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
