@@ -9,20 +9,20 @@ module FD(CLOCK_50, SW, KEY, out_c, out_x, out_y, writeEn);
 	output writeEn;
 	wire loadx, loady, loadc, enable;
 
-	assign start = KEY[1];
-	assign load = KEY[3];
+	assign start = ~KEY[1];
+	assign load = ~KEY[3];
 
-FSM f1(break, start, load, KEY[0], CLOCK_50, loadx, loady, loadc, enable, writeEn);
+FSM f1(start, load, KEY[0], CLOCK_50, loadx, loady, loadc, enable, writeEn);
 
 
-datapath d1(SW[6:0], SW[9:7],loadx,loady,loadc,enable,CLOCK_50,KEY[0],out_c,out_x,out_y, break);
+datapath d1(SW[6:0], SW[9:7],loadx,loady,loadc,enable,CLOCK_50,KEY[0],out_c,out_x,out_y);
 
 
 
 endmodule
 
-module FSM(break, start, load, reset, clk, loadx, loady, loadc, enable, writeEn);
-	input start, load, reset, clk, break;
+module FSM(start, load, reset, clk, loadx, loady, loadc, enable, writeEn);
+	input start, load, reset, clk;
 	output reg loadx, loady, loadc, enable, writeEn;
 	
 	reg [3:0] current_state, next_state; 
@@ -43,7 +43,7 @@ module FSM(break, start, load, reset, clk, loadx, loady, loadc, enable, writeEn)
                 sload_yw: next_state = load ? sload_yw : sloaded;
 		sloaded: next_state = start ? swait : sloaded;
 		swait: next_state = sdraw;
-		sdraw: next_state = (break == 1'b0) ? sload_x : swait; 
+		sdraw: next_state = swait; 
 
             default:     next_state = sload_x;
         endcase
@@ -65,9 +65,9 @@ module FSM(break, start, load, reset, clk, loadx, loady, loadc, enable, writeEn)
                 loady = 1'b1;
 		loadc = 1'b1;
                 end
-	    swait: begin
-                writeEn = 1'b0;
-                end
+// 	    swait: begin
+//                 writeEn = 1'b0;
+//                 end
 	    sdraw: begin
                 enable = 1'b1;
 		writeEn = 1'b1;
@@ -91,7 +91,7 @@ endmodule
 
 
 
-module datapath(xy,colour,loadx,loady,loadc,enable,clk,reset,out_c,out_x,out_y, break);
+module datapath(xy,colour,loadx,loady,loadc,enable,clk,reset,out_c,out_x,out_y);
 	input [6:0] xy;
 	input [2:0] colour;
 	input loadx, loady, loadc, enable, clk, reset;
@@ -99,7 +99,6 @@ module datapath(xy,colour,loadx,loady,loadc,enable,clk,reset,out_c,out_x,out_y, 
 	output [7:0] out_x;
 	output [6:0] out_y;
 	output [2:0] out_c;
-	output reg break;
 	reg [4:0] counter;
 	reg [7:0] x;
 	reg [6:0] y;
@@ -112,8 +111,7 @@ module datapath(xy,colour,loadx,loady,loadc,enable,clk,reset,out_c,out_x,out_y, 
 				x <= 8'b0;
 				y <= 8'b0;
 				c <= 3'b0;
-				add_one <= 1'b0;
-				break <= 1'b1;
+				counter <= 5'b0;
 				end
 			else 
 				begin
@@ -124,25 +122,16 @@ module datapath(xy,colour,loadx,loady,loadc,enable,clk,reset,out_c,out_x,out_y, 
 				if (loadc == 1'b1)
 					c <= colour;
 				if (enable == 1'b1)
-					add_one <= 1'b1;
+					begin
+					if (counter != 5'b11111)
+						counter <= counter + 1;
+					else begin
+						counter <= 5'b0;
+					     end
+					end
 				end
 		end
 	
-	always @(posedge clk)
-		begin
-			if(reset == 1'b0)
-				begin
-				counter <= 5'b0;
-				end
-			else if(add_one == 1'b1 & break == 1'b1) 
-				begin
-				if (counter != 5'b11111)
-					counter <= counter + 1;
-				else begin
-					counter <= 5'b0;
-				end
-				end
-		end
 	assign out_x = counter[2:1] + x;
 	assign out_y = counter[4:3] + y;
 	assign out_c = c;
@@ -183,6 +172,8 @@ module part2
 	
 	wire resetn;
 	assign resetn = KEY[0];
+	assign start = ~KEY[1];
+	assign load = ~KEY[3];
 	
 	// Create the colour, x, y and writeEn wires that are inputs to the controller.
 	wire [2:0] colour;
@@ -232,14 +223,12 @@ datapath d10(
 .out_c(out_c),
 .out_x(out_x),
 .out_y(out_y),
-.break(break)
 );
 
     // Instansiate FSM control
     // control c0(...);
 
 FSM f10(
-.break(break),
 .start(start),
 .load(load),
 .reset(KEY[0]),
