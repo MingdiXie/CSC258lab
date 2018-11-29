@@ -239,7 +239,7 @@ output outclock;
 reg [26:0]q;
 wire [26:0]d;
 
-assign d = 5'b11111; //here 27'd12_499_999
+assign d = 27'd12_499_999; //here 27'd12_499_999
 assign outclock= (q == 0) ? 1:0;
 
 always @(posedge clock)
