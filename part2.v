@@ -184,42 +184,44 @@ module datapath(in_x, in_y, enable_e, enable,clk,reset, out_x, out_y, done);
  output reg done;
  output [7:0] out_x;
  output [6:0] out_y;
- reg [7:0] counter;//
+ reg [7:0] counter;//[7:0]
 reg [14:0] counter1;
  always @(posedge clk)
   begin
    if(reset == 1'b0)
     begin
-    counter <= 8'b0;//
+    counter <= 8'b0;//8'b0;
     done <= 1'b0;
+    counter1 <= 15'b0;
     end
    else if (enable == 1'b1)
      begin
      counter1 <= 15'b0;
-     if (counter != 8'b11111111)//
+     if (counter != 8'b11111111)// 8'b11111111
  begin
       counter <= counter + 1;
             done <= 1'b0;
  end
      else begin
-      counter <= 8'b0;//
+      counter <= 8'b0;//8'b0;
       done <= 1'b1;
           end
      end
 
-//
+
+
   else if(enable_e == 1'b1)
-	begin
-     if (counter1 != 15'b111111111111111)
+//	begin
+//     if (counter1 != 15'b111111111111111)
       counter1 <= counter1 + 1;
-     else begin
-      counter1 <= 15'b0;
-          end
-        end
+//     else begin
+//      counter1 <= 15'b0;
+//          end
+//        end
   end
  
- assign out_x = counter[7:3] + in_x + counter1[14:7];
- assign out_y = counter[2:0] + in_y + counter1[6:0];
+ assign out_x = counter[7:3] + in_x + counter1[14:7];//counter[7:3]
+ assign out_y = counter[2:0] + in_y + counter1[6:0];//counter[2:0]
 endmodule
 
 module xycounter(l_out, clock, enable_xy, reset, count_x, count_y, aaa, sss, score);
@@ -286,7 +288,7 @@ always @(*)
 begin
  case (switch [1:0])
   2'b00: d = 22'd840_000;
-  2'b01: d = 22'd1680_000; //22'd1680_000
+  2'b01: d = 22'd3; //22'd1680_000
   2'b10: d = 22'd2360_000;
   2'b11: d = 22'd4720_000;
   default: d = 22'd840_000;
