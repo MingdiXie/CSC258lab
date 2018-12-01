@@ -13,7 +13,10 @@ module GFX2
   VGA_R,         // VGA Red[9:0]
   VGA_G,        // VGA Green[9:0]
   VGA_B,         // VGA Blue[9:0]
-  HEX0
+  LEDR
+
+
+//  HEX0
  );
  input   CLOCK_50;    // 50 MHz
  input   [9:0]   SW;
@@ -28,7 +31,8 @@ module GFX2
  output [9:0] VGA_R;       // VGA Red[9:0]
  output [9:0] VGA_G;      // VGA Green[9:0]
  output [9:0] VGA_B;       // VGA Blue[9:0]
- output [6:0] HEX0;
+ //output [6:0] HEX0;
+output [3:0] LEDR;
  wire resetn;
  assign resetn = KEY[0];
  assign start = ~KEY[1];
@@ -66,8 +70,8 @@ module GFX2
   defparam VGA.BACKGROUND_IMAGE = "black.mif";
    
  // Put your code here. Your code should produce signals x,y,colour and writeEn/plot
-KMS k1(akey, skey, SW[1:0], resetn, CLOCK_50, start, writeEn, colour, x, y, sss);
-seven_seg_decoder s1(sss ,HEX0); 
+KMS k1(akey, skey, SW[1:0], resetn, CLOCK_50, start, writeEn, colour, x, y, LEDR[3:0]);
+//seven_seg_decoder s1(sss ,HEX0); 
 endmodule
 
 module KMS(aaa, sss, difficulty, reset, clk, load, writeEn, colour, out_x, out_y, score);
@@ -186,6 +190,7 @@ module datapath(in_x, in_y, enable_e, enable,clk,reset, out_x, out_y, done);
  output [6:0] out_y;
  reg [7:0] counter;//[7:0]
 reg [14:0] counter1;
+reg era;
  always @(posedge clk)
   begin
    if(reset == 1'b0)
@@ -193,10 +198,10 @@ reg [14:0] counter1;
     counter <= 8'b0;//8'b0;
     done <= 1'b0;
     counter1 <= 15'b0;
+    era <= 1'b1;	    
     end
    else if (enable == 1'b1)
      begin
-     counter1 <= 15'b0;
      if (counter != 8'b11111111)// 8'b11111111
  begin
       counter <= counter + 1;
@@ -210,14 +215,15 @@ reg [14:0] counter1;
 
 
 
-  else if(enable_e == 1'b1)
-//	begin
-//     if (counter1 != 15'b111111111111111)
+  else if(enable_e == 1'b1 & era == 1'b1)
+	begin
+     if (counter1 != 15'b111111111111111)
       counter1 <= counter1 + 1;
-//     else begin
-//      counter1 <= 15'b0;
-//          end
-//        end
+     else begin
+      counter1 <= 15'b0;
+      era <= 1'b0;
+          end
+        end
   end
  
  assign out_x = counter[7:3] + in_x + counter1[14:7];//counter[7:3]
