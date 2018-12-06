@@ -232,6 +232,7 @@ reg era;
  assign out_x = counter[7:3] + in_x + counter1[14:7];//counter[7:3]
  assign out_y = counter[2:0] + in_y + counter1[6:0];//counter[2:0]
 endmodule
+
 module xycounter(l_out, clock, enable_xy, reset, count_x, count_y, aaa, sss, ddd,www, score1, score2, spaceb);
 input clock, reset, enable_xy, aaa, sss, ddd, www, spaceb;
 input [1:0] l_out;
@@ -255,57 +256,51 @@ else begin
 if (enable_xy == 1'b1) begin
  count_y <= count_y + 1'b1;
  if (count_y == 7'd112) begin
- 
-if (aaa ==1'b1 & count_x != 8'd44 & spaceb == 1'b1) begin//& count_x == 8'd4
+  
+  if ((sss ==1'b1 & count_x != 8'd84 & spaceb == 1'b1)|(aaa ==1'b1 & count_x != 8'd44 & spaceb == 1'b1)|(www ==1'b1 & count_x != 8'd4 & spaceb == 1'b1)|(ddd ==1'b1 & count_x != 8'd124 & spaceb == 1'b1)) begin// & count_x == 8'd44
   bonus <= 4'b1;
   end
   
   if (aaa ==1'b1 & count_x == 8'd44 & spaceb == 1'b1) begin//& count_x == 8'd4
   score1 <= score1 + bonus;
   if (bonus < 4'd8)
-  bonus <= 2 * bonus;
-  
-  if (score1 + bonus >= 4'd9)
+  bonus <= 2 * bonus; 
+   if (score1 + bonus >= 4'd10)
  begin
-  score1 <= score1 - 4'd9;
+  score1 <= score1 - 4'd10;
   score2 <= score2 +1;
  end
   end
   
-  if (sss ==1'b1 & count_x != 8'd84 & spaceb == 1'b1) begin// & count_x == 8'd44
-  bonus <= 4'b1;
-  end
   
 if (sss ==1'b1 & count_x == 8'd84 & spaceb == 1'b1) begin// & count_x == 8'd44
   score1 <= score1 + bonus;
   if (bonus < 4'd8)
   bonus <= 2 * bonus;
-  if (score1 + bonus >= 4'd9)
+ if (score1 + bonus >= 4'd10)
  begin
-  score1 <= score1 - 4'd9;
+  score1 <= score1 - 4'd10;
   score2 <= score2 +1;
  end
   end
+  
+  
   if (www ==1'b1 & count_x == 8'd4 & spaceb == 1'b1) begin//& count_x == 8'd4
   score1 <= score1 + bonus;
-  if (score1 + bonus >= 4'd9)
+   if (score1 + bonus >= 4'd10)
  begin
-  score1 <= score1 - 4'd9;
+  score1 <= score1 - 4'd10;
   score2 <= score2 +1;
  end
  if (bonus < 4'd8)
   bonus <= 2 * bonus;
   end
-  
-  if (www ==1'b1 & count_x != 8'd4 & spaceb == 1'b1) begin//& count_x == 8'd4
-  bonus <= 4'b1;
-  end
-  
+   
   
  if (ddd ==1'b1 & count_x == 8'd124 & spaceb == 1'b1) begin// & count_x == 8'd44
-  if (score1 + bonus >= 4'd9)
+  if (score1 + bonus >= 4'd10)
    begin
-    score1 <= score1 - 4'd9;
+    score1 <= score1 - 4'd10;
     score2 <= score2 +1;
    end
   score1 <= score1 + bonus;
@@ -313,9 +308,7 @@ if (sss ==1'b1 & count_x == 8'd84 & spaceb == 1'b1) begin// & count_x == 8'd44
   bonus <= 2 * bonus;
  end
   
- if (ddd ==1'b1 & count_x != 8'd124 & spaceb == 1'b1) begin// & count_x == 8'd44
-  bonus <= 4'b1;
- end
+
 
   if (l_out == 2'b11) begin
   count_x <= 8'd4;//8'd4
@@ -371,6 +364,8 @@ else
 q <= q - 1;
 end
 endmodule
+
+
 module LFSR(reset, clk, ooo);
     input reset;
     input clk;
@@ -385,6 +380,8 @@ module LFSR(reset, clk, ooo);
     out <= {out[2:0], feedback};
     end
 endmodule
+
+
 module seven_seg_decoder(S,HEXO);
 input [3:0]S;
 output [6:0] HEXO;
