@@ -15,6 +15,8 @@ module GFX2
   VGA_B,         // VGA Blue[9:0]
  HEX0,
  HEX1,
+  HEX2,
+ HEX3,
  PS2_CLK, 
  PS2_DAT,
  LEDR
@@ -37,6 +39,8 @@ module GFX2
  //output [6:0] HEX0;
  output [6:0] HEX1;
  output [6:0] HEX0;
+ output [6:0] HEX2;
+ output [6:0] HEX3;
  output [6:0] LEDR;
  wire resetn;
  assign resetn = KEY[0];
@@ -80,11 +84,17 @@ module GFX2
     wire dkey;
     wire [5:0] useless;
   wire spaceb;
+ wire [3:0] hscore1;
+ wire [3:0] hscore2;
+ 
     keyboard_tracker #(.PULSE_OR_HOLD(0)) KB0(CLOCK_50, resetn, PS2_CLK, PS2_DAT, wkey, akey, skey, dkey, useless[5], useless[4], useless[3], useless[2], spaceb, useless[0]);
  // Put your code here. Your code should produce signals x,y,colour and writeEn/plot
 KMS k1(akey, skey, dkey, wkey, SW[1:0], resetn, CLOCK_50, start, writeEn, colour, x, y, sss1, sss2, spaceb);
+history hhh1(sss1,sss2,CLOCK_50,resetn,SW[3:2],~KEY[3],hscore1,hscore2);
 seven_seg_decoder s1(sss1 ,HEX0); 
-seven_seg_decoder s2(sss2 ,HEX1); 
+seven_seg_decoder s2(sss2 ,HEX1);
+ seven_seg_decoder s3(hscore1 ,HEX2); 
+ seven_seg_decoder s4(hscore2 ,HEX3); 
 endmodule
 module KMS(aaa, sss, ddd, www, difficulty, reset, clk, load, writeEn, colour, out_x, out_y, score1, score2, spaceb);
 input reset, clk, load, aaa, sss, ddd, www;
@@ -379,6 +389,70 @@ module LFSR(reset, clk, ooo);
    else
     out <= {out[2:0], feedback};
     end
+endmodule
+
+
+module history(score1,score2,clk,reset,mux,load,outs1,outs2);
+ input [3:0] score1;
+ input [3:0] score2;
+ input clk,reset,load;
+ output [3:0] outs1;
+ output [3:0] outs2;
+ reg [3:0] q1,q2,q3,q4,q5,q6,q7,q8;
+ reg [1:0] done;
+ always @(posedge clk) begin
+ if (reset == 1'b0) begin
+  q1 <= 4'b0;
+  q2 <= 4'b0;
+  q3 <= 4'b0;
+  q4 <= 4'b0;
+  q5 <= 4'b0;
+  q6 <= 4'b0;
+  q7 <= 4'b0;
+  q8 <= 4'b0;
+  done <= 2'b00;
+ end
+ if (load) begin
+  q1 <= score1;
+  q2 <= score2;
+  done <= 2'b01;
+ end
+ else if (load == 1'b1 & done == 2'b01) begin
+  q3 <= score1;
+  q4 <= score2;
+ done <= done + 1'b1;
+ end
+ else if (load == 1'b1 & done == 2'b10) begin
+  q5 <= score1;
+  q6 <= score2;
+ done <= done + 1'b1;
+ end
+ else if (load == 1'b1 & done == 2'b11) begin
+  q7 <= score1;
+  q8 <= score2;
+ end
+end
+ always @(*)
+begin
+ case (mux [1:0])
+		2'b00: outs1 = q1;
+		2'b01: outs1 = q3;
+  2'b10: outs1 = q5;
+  2'b11: outs1 = q7;
+		default: outs1 = q1;
+	endcase
+end
+  always @(*)
+begin
+ case (mux [1:0])
+  2'b00: outs2 = q2;
+  2'b01: outs2 = q4;
+  2'b10: outs2 = q6;
+  2'b11: outs2 = q8;
+		default: outs2 = q2;
+	endcase
+end
+ 
 endmodule
 
 
