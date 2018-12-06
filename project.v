@@ -90,7 +90,7 @@ module GFX2
     keyboard_tracker #(.PULSE_OR_HOLD(0)) KB0(CLOCK_50, resetn, PS2_CLK, PS2_DAT, wkey, akey, skey, dkey, useless[5], useless[4], useless[3], useless[2], spaceb, useless[0]);
  // Put your code here. Your code should produce signals x,y,colour and writeEn/plot
 KMS k1(akey, skey, dkey, wkey, SW[1:0], resetn, CLOCK_50, start, writeEn, colour, x, y, sss1, sss2, spaceb);
-history hhh1(sss1,sss2,CLOCK_50,resetn,SW[3:2],~KEY[3],hscore1,hscore2);
+	history hhh1(sss1,sss2,~KEY[2],SW[3:2],~KEY[3],hscore1,hscore2);
 seven_seg_decoder s1(sss1 ,HEX0); 
 seven_seg_decoder s2(sss2 ,HEX1);
  seven_seg_decoder s3(hscore1 ,HEX2); 
@@ -392,26 +392,27 @@ module LFSR(reset, clk, ooo);
 endmodule
 
 
-module history(score1,score2,clk,reset,mux,load,outs1,outs2);
+module history(score1,score2,reset,mux,load,outs1,outs2);
  input [3:0] score1;
  input [3:0] score2;
- input clk,reset,load;
+ input reset,load;
+input [1:0] mux;
  output [3:0] outs1;
  output [3:0] outs2;
  reg [3:0] q1,q2,q3,q4,q5,q6,q7,q8;
  reg [1:0] done;
- always @(posedge clk) begin
- if (reset == 1'b0) begin
-  q1 <= 4'b0;
-  q2 <= 4'b0;
-  q3 <= 4'b0;
-  q4 <= 4'b0;
-  q5 <= 4'b0;
-  q6 <= 4'b0;
-  q7 <= 4'b0;
-  q8 <= 4'b0;
-  done <= 2'b00;
- end
+	always @(posedge load or posedge reset) begin
+		if (reset == 1'b0) begin
+  		q1 <= 4'b0;
+  		q2 <= 4'b0;
+  		q3 <= 4'b0;
+  		q4 <= 4'b0;
+  		q5 <= 4'b0;
+  		q6 <= 4'b0;
+  		q7 <= 4'b0;
+  		q8 <= 4'b0;
+  		done <= 2'b00;
+ 		end
  if (load) begin
   q1 <= score1;
   q2 <= score2;
